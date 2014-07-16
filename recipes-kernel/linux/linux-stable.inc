@@ -20,6 +20,7 @@ SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
 	file://vivante/0002-ENGR00240988-drm-vivante-remove-reclaim_buffers-call.patch \
 	file://vivante/0003-drm-vivante-build-fixes.patch \
 	file://vivante/0004-Fixed-vivante-driver-for-kernel-3.14.x.patch \
+	file://wlan-bluetooth-module.patch \
 "
 SRCREV="${AUTOREV}"
 
