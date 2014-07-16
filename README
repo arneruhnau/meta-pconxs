@@ -1,1 +1,7 @@
 This is the Yocto Meta-Layer capturing the extensions to support the K&K Trizeps VII / pConXS.
+
+This layer depends on:
+
+URI: git://git.yoctoproject.org/meta-fsl-arm
+branch: master
+revision: HEAD
