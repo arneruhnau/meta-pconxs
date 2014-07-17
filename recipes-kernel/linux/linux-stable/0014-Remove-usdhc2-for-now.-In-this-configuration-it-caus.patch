@@ -1,0 +1,32 @@
+From b6c358e98c69ba7b27262e8447df9edf1b8620ad Mon Sep 17 00:00:00 2001
+From: Arne Ruhnau <arne.ruhnau@target-sg.com>
+Date: Thu, 17 Jul 2014 03:59:36 +0200
+Subject: [PATCH 14/14] Remove usdhc2 for now. In this configuration, it causes
+ an endless loop of voltage selection/probes from the driver. Now, when
+ unblocking with rfkill, hci0 works.
+
+---
+ arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts b/arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts
+index 9c45615..3d198a7 100644
+--- a/arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts
++++ b/arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts
+@@ -326,13 +326,6 @@
+ 	no-1-8-v;
+ 	bus-width = <4>;
+ };
+-&usdhc2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_usdhc2_2>;
+-	keep-power-in-suspend;
+-	status = "okay";
+-	vmmc-supply = <&sw4_reg>;
+-};
+ &usdhc4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc4_1>;
+-- 
+1.9.1
+

@@ -1,8 +1,13 @@
-commit 0ab3028609d61c7608dd3c40960a257fa43ab67d
-Author: Arne Ruhnau <arne.ruhnau@target-sg.com>
-Date:   Thu Jul 10 14:43:06 2014 +0200
+From e1c7cae8c8e9fe8c8deac566f5b0e9215740c358 Mon Sep 17 00:00:00 2001
+From: Arne Ruhnau <arne.ruhnau@target-sg.com>
+Date: Sun, 13 Jul 2014 00:43:01 +0200
+Subject: [PATCH 02/14] Initial device tree support
 
-    Added the device tree for the pconxs board
+---
+ arch/arm/boot/dts/Makefile                   |   1 +
+ arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts | 382 +++++++++++++++++++++++++++
+ 2 files changed, 383 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts
 
 diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
 index adb5ed9..086be35 100644
@@ -404,3 +409,6 @@ index 0000000..7b682db
 +	reset-gpio = <&gpio3 13 0>;
 +	wake-up-gpio = <&gpio6 7 0>;
 +};
+-- 
+1.9.1
+

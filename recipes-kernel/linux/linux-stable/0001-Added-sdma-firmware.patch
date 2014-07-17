@@ -1,5 +1,16 @@
+From 958a5aea072fed16d623304c5229e925cd8c6a19 Mon Sep 17 00:00:00 2001
+From: Arne Ruhnau <arne.ruhnau@target-sg.com>
+Date: Sun, 13 Jul 2014 00:41:24 +0200
+Subject: [PATCH 01/14] Added sdma firmware
+
+---
+ firmware/Makefile                     |   2 +
+ firmware/imx/sdma/sdma-imx6q.bin.ihex | 116 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 118 insertions(+)
+ create mode 100644 firmware/imx/sdma/sdma-imx6q.bin.ihex
+
 diff --git a/firmware/Makefile b/firmware/Makefile
-index 5747417..cf7e086 100644
+index 0862d34..4615b03 100644
 --- a/firmware/Makefile
 +++ b/firmware/Makefile
 @@ -136,6 +136,8 @@ fw-shipped-$(CONFIG_USB_VICAM) += vicam/firmware.fw
@@ -133,3 +144,6 @@ index 0000000..2e561f0
 +:10071000DD6F087FD169010FC86FDD6F037F0101B5
 +:0E0720000004129B0700FF680C680002129B89
 +:00000001FF
+-- 
+1.9.1
+

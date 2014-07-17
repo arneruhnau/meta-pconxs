@@ -1,8 +1,12 @@
-commit 3a2cf3c4c6a6eadf1719b88b26c223f25979aac6
-Author: Arne Ruhnau <arne.ruhnau@target-sg.com>
-Date:   Sun Jul 13 03:11:13 2014 +0200
+From 152f30d93f360973c6117c32f348df413bd7a6a5 Mon Sep 17 00:00:00 2001
+From: Arne Ruhnau <arne.ruhnau@target-sg.com>
+Date: Sun, 13 Jul 2014 03:11:13 +0200
+Subject: [PATCH 04/14] Add GPU to the device tree
 
-    Add GPU to the device tree
+---
+ arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts |  4 ++++
+ arch/arm/boot/dts/imx6dl.dtsi                | 12 ++++++++++++
+ 2 files changed, 16 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts b/arch/arm/boot/dts/imx6dl-trizeps7-pconxs.dts
 index 7b682db..a789ee4 100644
@@ -33,7 +37,7 @@ index 0a9c49d..035d47e 100644
 +				 <&clks 121>, <&clks 26>;
 +			    clock-names = "gpu3d_clk", "gpu3d_shader_clk", "gpu3d_axi_clk",
 +					  "gpu2d_clk", "gpu2d_axi_clk";
-+			    interrupts = <0 9 0x04>, <0 10 0x04>;
++			    interrupts = <0 9 0x04>, <0 10 0x04>, <0 11 0x04>;
 +			    interrupt-names = "irq-3d", "irq-2d";
 +			    reg = <0 0>, <0x00130000 0x4000>, <0x00134000 0x4000>;
 +			    reg-names = "phys-addr", "iobase-3d", "iobase-2d";
@@ -42,3 +46,6 @@ index 0a9c49d..035d47e 100644
  		ocram: sram@00900000 {
  			compatible = "mmio-sram";
  			reg = <0x00900000 0x20000>;
+-- 
+1.9.1
+

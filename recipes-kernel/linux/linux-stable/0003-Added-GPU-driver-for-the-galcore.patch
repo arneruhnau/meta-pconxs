@@ -1,8 +1,142 @@
-commit 0d96a619b4c973ebd990d13f6950d84234b403ed
-Author: Arne Ruhnau <arne.ruhnau@target-sg.com>
-Date:   Sun Jul 13 02:47:06 2014 +0200
+From 38e58549f1e0a96820a4dae2c8c1895e9fe2fa61 Mon Sep 17 00:00:00 2001
+From: Arne Ruhnau <arne.ruhnau@target-sg.com>
+Date: Sun, 13 Jul 2014 02:47:06 +0200
+Subject: [PATCH 03/14] Added GPU driver for the galcore
 
-    Added GPU driver for the galcore
+---
+ drivers/Kconfig                                    |    2 +
+ drivers/Makefile                                   |    1 +
+ drivers/mxc/Kconfig                                |   11 +
+ drivers/mxc/Makefile                               |    1 +
+ drivers/mxc/gpu-viv/Kbuild                         |  236 +
+ drivers/mxc/gpu-viv/Kconfig                        |    9 +
+ .../hal/kernel/gc_hal_kernel_hardware_command_vg.c |  932 ++
+ .../hal/kernel/gc_hal_kernel_hardware_command_vg.h |  319 +
+ .../GC350/hal/kernel/gc_hal_kernel_hardware_vg.c   | 2110 +++++
+ .../GC350/hal/kernel/gc_hal_kernel_hardware_vg.h   |   75 +
+ .../arch/XAQ2/hal/kernel/gc_hal_kernel_context.c   | 1735 ++++
+ .../arch/XAQ2/hal/kernel/gc_hal_kernel_context.h   |  157 +
+ .../arch/XAQ2/hal/kernel/gc_hal_kernel_hardware.c  | 7240 ++++++++++++++++
+ .../arch/XAQ2/hal/kernel/gc_hal_kernel_hardware.h  |  136 +
+ drivers/mxc/gpu-viv/config                         |   38 +
+ drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel.c     | 3879 +++++++++
+ drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel.h     |  995 +++
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_command.c | 3042 +++++++
+ .../gpu-viv/hal/kernel/gc_hal_kernel_command_vg.c  | 3677 ++++++++
+ drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_db.c  | 1548 ++++
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_debug.c   | 2559 ++++++
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_event.c   | 2902 +++++++
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_heap.c    |  859 ++
+ .../hal/kernel/gc_hal_kernel_interrupt_vg.c        |  877 ++
+ drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_mmu.c | 1870 ++++
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_mmu_vg.c  |  522 ++
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_power.c   |  347 +
+ .../mxc/gpu-viv/hal/kernel/gc_hal_kernel_precomp.h |   29 +
+ drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_vg.c  |  893 ++
+ drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_vg.h  |   85 +
+ .../hal/kernel/gc_hal_kernel_video_memory.c        | 2249 +++++
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal.h        | 2661 ++++++
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_base.h   | 3896 +++++++++
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_compiler.h   | 4278 ++++++++++
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_driver.h | 1028 +++
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_driver_vg.h  |  270 +
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_dump.h   |   88 +
+ .../gpu-viv/hal/kernel/inc/gc_hal_eglplatform.h    |  617 ++
+ .../hal/kernel/inc/gc_hal_eglplatform_type.h       |  286 +
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_engine.h | 2053 +++++
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_engine_vg.h  |  904 ++
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_enum.h   |  962 +++
+ .../gpu-viv/hal/kernel/inc/gc_hal_kernel_buffer.h  |  185 +
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_mem.h    |  530 ++
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_options.h    |  947 ++
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_profiler.h   |  584 ++
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_raster.h | 1010 +++
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_rename.h |  248 +
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_statistics.h |  115 +
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_types.h  | 1079 +++
+ .../mxc/gpu-viv/hal/kernel/inc/gc_hal_version.h    |   37 +
+ drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_vg.h     |  913 ++
+ .../hal/os/linux/kernel/gc_hal_kernel_debug.h      |  102 +
+ .../hal/os/linux/kernel/gc_hal_kernel_debugfs.c    |  795 ++
+ .../hal/os/linux/kernel/gc_hal_kernel_debugfs.h    |   84 +
+ .../hal/os/linux/kernel/gc_hal_kernel_device.c     | 1752 ++++
+ .../hal/os/linux/kernel/gc_hal_kernel_device.h     |  195 +
+ .../hal/os/linux/kernel/gc_hal_kernel_driver.c     | 1500 ++++
+ .../hal/os/linux/kernel/gc_hal_kernel_linux.c      |  481 ++
+ .../hal/os/linux/kernel/gc_hal_kernel_linux.h      |   94 +
+ .../hal/os/linux/kernel/gc_hal_kernel_math.c       |   32 +
+ .../gpu-viv/hal/os/linux/kernel/gc_hal_kernel_os.c | 9025 ++++++++++++++++++++
+ .../gpu-viv/hal/os/linux/kernel/gc_hal_kernel_os.h |   83 +
+ .../hal/os/linux/kernel/gc_hal_kernel_sync.c       |  174 +
+ .../hal/os/linux/kernel/gc_hal_kernel_sync.h       |   71 +
+ include/linux/busfreq-imx6.h                       |   23 +
+ include/linux/device_cooling.h                     |   45 +
+ 67 files changed, 76482 insertions(+)
+ create mode 100644 drivers/mxc/Kconfig
+ create mode 100644 drivers/mxc/Makefile
+ create mode 100644 drivers/mxc/gpu-viv/Kbuild
+ create mode 100644 drivers/mxc/gpu-viv/Kconfig
+ create mode 100644 drivers/mxc/gpu-viv/arch/GC350/hal/kernel/gc_hal_kernel_hardware_command_vg.c
+ create mode 100644 drivers/mxc/gpu-viv/arch/GC350/hal/kernel/gc_hal_kernel_hardware_command_vg.h
+ create mode 100644 drivers/mxc/gpu-viv/arch/GC350/hal/kernel/gc_hal_kernel_hardware_vg.c
+ create mode 100644 drivers/mxc/gpu-viv/arch/GC350/hal/kernel/gc_hal_kernel_hardware_vg.h
+ create mode 100644 drivers/mxc/gpu-viv/arch/XAQ2/hal/kernel/gc_hal_kernel_context.c
+ create mode 100644 drivers/mxc/gpu-viv/arch/XAQ2/hal/kernel/gc_hal_kernel_context.h
+ create mode 100644 drivers/mxc/gpu-viv/arch/XAQ2/hal/kernel/gc_hal_kernel_hardware.c
+ create mode 100644 drivers/mxc/gpu-viv/arch/XAQ2/hal/kernel/gc_hal_kernel_hardware.h
+ create mode 100644 drivers/mxc/gpu-viv/config
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_command.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_command_vg.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_db.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_debug.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_event.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_heap.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_interrupt_vg.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_mmu.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_mmu_vg.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_power.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_precomp.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_vg.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_vg.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/gc_hal_kernel_video_memory.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal.h
+ create mode 100755 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_base.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_compiler.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_driver.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_driver_vg.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_dump.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_eglplatform.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_eglplatform_type.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_engine.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_engine_vg.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_enum.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_kernel_buffer.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_mem.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_options.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_profiler.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_raster.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_rename.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_statistics.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_types.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_version.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/kernel/inc/gc_hal_vg.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_debug.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_debugfs.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_debugfs.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_device.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_device.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_driver.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_linux.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_linux.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_math.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_os.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_os.h
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_sync.c
+ create mode 100644 drivers/mxc/gpu-viv/hal/os/linux/kernel/gc_hal_kernel_sync.h
+ create mode 100644 include/linux/busfreq-imx6.h
+ create mode 100644 include/linux/device_cooling.h
 
 diff --git a/drivers/Kconfig b/drivers/Kconfig
 index 0e87a34..6e2b679 100644
@@ -76898,3 +77032,6 @@ index 0000000..ae40a45
 +}
 +#endif
 +#endif /* __DEVICE_THERMAL_H__ */
+-- 
+1.9.1
+

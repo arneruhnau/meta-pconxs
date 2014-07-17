@@ -1,15 +1,14 @@
-From 26a7347c696436293a1a31325b0908cc300bf1d2 Mon Sep 17 00:00:00 2001
-From: Lucas Stach <l.stach@pengutronix.de>
-Date: Wed, 16 Jul 2014 15:29:32 +0200
-Subject: [PATCH] arm: imx6q: parent lvds_sel input from ref gates
+From def8a6b040f45ac9c40ec9a20728b72edf1aebcb Mon Sep 17 00:00:00 2001
+From: Arne Ruhnau <arne.ruhnau@target-sg.com>
+Date: Wed, 16 Jul 2014 18:58:48 +0200
+Subject: [PATCH 07/14] Applied patch to correct the clock chain driving pcie
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
  arch/arm/mach-imx/clk-imx6q.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm/mach-imx/clk-imx6q.c b/arch/arm/mach-imx/clk-imx6q.c
-index 8e795dea02ec..8556c787e59c 100644
+index 8e795de..8556c78 100644
 --- a/arch/arm/mach-imx/clk-imx6q.c
 +++ b/arch/arm/mach-imx/clk-imx6q.c
 @@ -70,7 +70,7 @@ static const char *cko_sels[] = { "cko1", "cko2", };
@@ -31,5 +30,5 @@ index 8e795dea02ec..8556c787e59c 100644
  	/* Set initial power mode */
  	imx6q_set_lpm(WAIT_CLOCKED);
 -- 
-2.0.1
+1.9.1
 
