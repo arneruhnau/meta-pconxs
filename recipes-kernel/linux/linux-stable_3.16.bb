@@ -1,4 +1,4 @@
-SRCBRANCH = "can-gpio-keys"
+SRCBRANCH = "pconxs"
 SRCREV = "AUTOINC"
 
 require linux-stable.inc
